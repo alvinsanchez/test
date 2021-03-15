@@ -13,15 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
 Route::get('/collections', 'CollectionController@collector');
 
 Route::post('/add-drink', 'DrinksController@addDrinks');
 Route::post('/get-drink', 'DrinksController@getAll');
 
 Route::post('upsert-brand', 'BrandsController@upsertBrand');
-Route::post('get-brand', 'BrandsController@getBrands');
+Route::get('get-brand', 'BrandsController@getBrands');
+
+Route::get('/{any}', function(){
+    return view('main');
+})->where('any', '.*');
